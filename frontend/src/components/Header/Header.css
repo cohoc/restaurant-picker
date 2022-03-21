@@ -1,0 +1,63 @@
+.header-container{
+    width: 100%;
+    height: 60px;
+    background: rgb(50, 150, 255);
+    box-shadow: var(--box-shadow);
+
+}
+
+.header-content{
+    max-width: 1280px;
+    height: 100%;
+    margin: 0 auto; 
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-content h1{
+    color: white;
+    font-size: 1.15rem;
+    letter-spacing: 3px;
+    font-family: var(--font-style-os);
+    font-weight: 700;
+}
+
+.searchbar-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 275px;
+    height: 50%;
+    padding: 0 .5rem;
+    background: rgb(110, 180, 255); 
+}
+
+.searchbar{
+    width: 100%;
+    height: 100%;
+    cursor: text;
+}
+
+.searchbar-icon{
+    fill: white;
+    width: 25px;
+    height: 50%;
+}
+
+.searchbar-divider{
+    width: 1px;
+    height: 75%;
+    display: block;
+    background: rgba(205, 230, 255, .75); 
+    margin-left: 4px;
+    margin-right: 8px;
+}
+
+input.searchbar{
+    color:white;
+}
+.searchbar-container input::placeholder{
+    color: white;
+}

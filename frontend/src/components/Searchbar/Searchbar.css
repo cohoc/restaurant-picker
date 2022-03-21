@@ -1,0 +1,23 @@
+.search-predictions-container{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    margin-top: 30px;
+    background: white;
+}
+
+.search-predictions > li {
+    padding: 6px;
+    color: var(--color-lgr);
+    cursor: pointer;
+}
+
+.search-predictions li:hover {
+    background: rgba(110, 209, 255, 0.25);
+}
+
+.search-predictions li:not(:last-child){
+    border-bottom: 1px solid rgba(0,0,0,.15);
+}

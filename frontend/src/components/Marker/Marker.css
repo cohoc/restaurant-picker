@@ -1,0 +1,78 @@
+.marker-location{
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.marker-icon{
+    width: 100%;
+    height: 100%;
+    transition: all 200ms ease-in-out;
+    z-index: 3;
+}
+
+.marker-hover {
+    transform: scale(1.35);
+    z-index: 999;
+}
+
+.marker-user-location{
+    position: relative;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    background: var(--color-theme-blue);
+    border-radius: 50%;
+}
+
+.marker-user-icon{
+    width: 1.35rem;
+    height: 1.35rem;
+    margin-bottom: 2px;
+}
+
+.marker-user-info{
+    position: absolute;
+    display: flex;
+    align-items: center; 
+    justify-content: center;  
+    width: 6rem;
+    height: 2rem;
+    vertical-align: middle;
+    display: flex;
+    background: var(--color-lg);
+    color: white;
+    letter-spacing: .5px;
+    transform: translate(4rem, -2rem);
+    border-radius: 5% 5% 5% 0%;
+    opacity: 0;
+    transition: all .15s ease-in;
+}
+
+.marker-user-info::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+    background: var(--color-lg);
+    transform: skew(0deg, -30deg);
+    z-index: -2;
+
+}
+
+.marker-user-location:hover {
+    background: var(--color-theme-blue-darker);
+}
+
+.marker-user-location:hover .marker-user-info{
+    opacity: 1;
+    transition: all .15s ease-in;
+}

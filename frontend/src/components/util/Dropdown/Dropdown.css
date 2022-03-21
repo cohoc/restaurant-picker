@@ -1,0 +1,99 @@
+.dropdown-container{
+    position: relative;
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+}
+
+.dropdown-active{
+    background: var(--color-filter-buttons-focus);
+}
+
+.dropdown-hidden{
+    background: rgb(150, 160, 175);
+}
+
+.dropdown-btn{
+    min-width: 90px;
+    height: 40px;
+    padding: 0 .75rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: .5rem;
+    z-index: 3;
+}
+
+.dropdown-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 100%;
+}
+
+.dropdown-arrow{
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+.dropdown-cancel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.cancel-icon{
+    width: 10px;
+    height: 10px;
+    fill: white;
+}
+
+.dropdown-btn:focus{
+    background: var(--color-filter-buttons-focus);
+}
+
+.dropdown-menu{
+    width: 150px;
+    top: 45px;
+    position: absolute;
+    display: none;
+    box-shadow: var(--box-shadow);
+    background: white;
+    z-index: 99;
+}
+
+.dropdown-menu:nth-child(odd){
+    width: 130px;
+}
+
+.dropdown-menu li{
+    display: flex;
+    align-items: center;
+    height: 35px;
+    padding: 0 1rem;
+    cursor: pointer;
+    color: var(--font-lg);
+    border-bottom: 1px solid white;
+}
+
+.dropdown-menu li:hover{
+    background: rgba(180, 200, 255, 0.2);
+}
+
+.is-open{
+    display: block;
+}
+
+.is-hidden{
+    display: none;
+}
+
+.dropdown-container:hover .dropdown-btn{
+    background: var(--color-filter-buttons-focus);
+}
+
