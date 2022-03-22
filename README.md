@@ -5,5 +5,7 @@
 ![Screenshot](screenshots/sample.png)
 
 ### Packages
+
 [react-google-autocomplete](https://www.npmjs.com/package/react-google-autocomplete)
+
 [google-map-react](https://www.npmjs.com/package/google-map-react)
