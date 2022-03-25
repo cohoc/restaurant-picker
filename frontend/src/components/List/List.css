@@ -38,6 +38,35 @@
     background: var(--color-filter-buttons-focus);
 }
 
+.list-page-container{
+    width: 100%;
+    height: 50px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    color: var(--font-lgr);
+    border-top: 1px solid rgba(0,0,0,.05);
+}
+
+.list-page-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 75px;
+    height: 100%;
+
+}
+
+.page-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+}
+
 .place{
     width: 100%;
     font-size: 1.5rem;
