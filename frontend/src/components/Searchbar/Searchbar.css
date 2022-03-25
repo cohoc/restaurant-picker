@@ -8,16 +8,33 @@
     background: white;
 }
 
-.search-predictions > li {
-    padding: 6px;
+.search-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px .5rem;
     color: var(--color-lgr);
     cursor: pointer;
+    font-size: .9rem;
 }
 
-.search-predictions li:hover {
+.item-icon-container{
+    display: flex;
+    width: 25px;
+    height: 25px;
+    align-items: center;
+}
+
+.search-item-icon{
+    width: 20px;
+    height: 20px;
+    fill: rgb(150, 160, 175);
+}
+
+.search-item:hover {
     background: rgba(110, 209, 255, 0.25);
 }
 
-.search-predictions li:not(:last-child){
+.search-item:not(:last-child){
     border-bottom: 1px solid rgba(0,0,0,.15);
 }
