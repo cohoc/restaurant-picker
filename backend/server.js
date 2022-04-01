@@ -23,7 +23,7 @@ app.get('/restaurants/:lat/:lon', (req, res) => {
     try {
         axios.get(`${url}type=restaurant&rankby=distance&location=${latitude},${longitude}&key=${process.env.GOOGLE_PLACES_KEY}`)
             .then( function(response) {
-                res.status(200).json(response.data.results)
+                res.status(200).json(response.data)
             })
         //res.status(200).json(data);
         //res.send("latitude is: " + latitude + " longitude is: " + longitude);

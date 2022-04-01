@@ -6,12 +6,13 @@ const MapContext = createContext();
 const MapProvider = props => {
 
     const [loading, setLoading] = useState(false);
+    const [hover, setHover] = useState(null);
     const [lat, setLat] = useState();
     const [lon, setLon] = useState();
     const [loaded, setLoaded] = useState(false);
     const [places, setPlaces] = useState([]);
-    const [hover, setHover] = useState(null);
     const [sorted, setSorted] = useState([]);
+    const [token, setToken] = useState()
     
     const [filter, setFilter] = useState({
         rating: "",
@@ -54,7 +55,8 @@ const MapProvider = props => {
         if( loading ) {
             const placesHandler = async () => {
                 const data = await getPlaces(lat, lon);
-                setPlaces(data);
+                setPlaces(data.results);
+                setToken(data.next_page_token)
                 console.log(data);
             }
             routeHandler();

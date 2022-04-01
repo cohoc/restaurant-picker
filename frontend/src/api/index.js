@@ -6,3 +6,8 @@ export const getPlaces = async (latitude, longitude) => {
     const response = await axios.get(`${url}/${latitude}/${longitude}`)
     return (response.data);
 }
+
+export const getNext = async (latitude, longitude, token) => {
+    const response = await axios.get(`${url}/${latitude}/${longitude}/${token}`)
+    return (response.data)
+}

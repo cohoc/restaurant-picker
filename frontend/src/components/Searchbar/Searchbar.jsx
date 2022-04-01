@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
 import { MapContext } from '../Context/MapContext'
-import BasicMarker from '../../assets/svg/marker-basic.svg'
 import useGoogle from "react-google-autocomplete/lib/usePlacesAutocompleteService"
 //import Autocomplete from "react-google-autocomplete";
 import './Searchbar.css'

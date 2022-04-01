@@ -130,3 +130,7 @@
     width: 20px;
     height: 20px;
 }
+
+.btn-disabled{
+    fill:rgb(186, 186, 186);
+}
