@@ -7,7 +7,7 @@ import UserMarker from '../Marker/UserMarker';
 
 function Map() {
 
-    const {lat,lon, places, apiIsLoaded} = useContext(MapContext)
+    const {lat,lon, sorted, apiIsLoaded} = useContext(MapContext)
 
     function createMapOptions(maps) {
         return {
@@ -46,7 +46,7 @@ function Map() {
                     />   
 
                     
-                    {places?.map( (place, index) => {
+                    {sorted?.map( (place, index) => {
                         return(
                             <Marker 
                                 placeid={place.place_id}
