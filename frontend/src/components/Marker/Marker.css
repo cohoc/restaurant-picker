@@ -1,10 +1,15 @@
 .marker-location{
     width: 1.75rem;
     height: 1.75rem;
+    display: block;
+    z-index: 999;
+}
+
+.marker-icon-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    position: relative;
 }
 
 .marker-icon{
@@ -16,6 +21,37 @@
 
 .marker-hover {
     transform: scale(1.35);
+    z-index: 999;
+}
+
+.marker-place-info{
+    bottom: 100%;
+    left: 100%;
+    display: block;
+    position: absolute;
+    padding: .25rem .5rem;
+    background: var(--color-lg);
+    margin: 2px;
+    opacity: 0;
+}
+
+.marker-place-info p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: fit-content;
+    height: 1rem;
+    font-size: .75rem;
+    letter-spacing: .5px;
+    color: white;
+    white-space: nowrap;
+    
+}
+
+.marker-place-hover{ 
+    opacity: 1;
+    transition: opacity 150ms ease-in;
     z-index: 999;
 }
 

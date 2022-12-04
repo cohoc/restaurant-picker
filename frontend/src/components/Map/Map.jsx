@@ -49,6 +49,7 @@ function Map() {
                     {sorted?.map( (place, index) => {
                         return(
                             <Marker 
+                                name={place.name}
                                 placeid={place.place_id}
                                 key={index}
                                 lat={place.geometry.location.lat}
