@@ -33,7 +33,7 @@ function Map() {
                     libraries:['places'],
                 }}
                 center={{ lat: lat, lng: lon}}
-                zoom={13}
+                zoom={14}
                 options={createMapOptions}
                 yesIWantToUseGoogleMapApiInternals
                 onGoogleApiLoaded={ ({map, maps}) => apiIsLoaded() }
