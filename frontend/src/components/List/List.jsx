@@ -1,13 +1,12 @@
 import React, { useState, useContext } from 'react';
 import Dropdown from '../util/Dropdown/Dropdown';
-import Star from '../../assets/svg/star.svg'
-import Dollar from '../../assets/svg/dollar.svg'
 import { MapContext } from '../Context/MapContext';
 import './List.css'
+import ListItem from './ListItem';
 
 function List() {
 
-    const { filter, filterClear, handleFilter, mouseHover, mouseLeave, sorted} = useContext(MapContext);
+    const { filter, filterClear, handleFilter, sorted} = useContext(MapContext);
 
     const [page, setPage] = useState(1);
 
@@ -75,52 +74,16 @@ function List() {
                             <>
                                 {sorted.map((place, index) => {
                                     return(
-                                        <li className="place" 
+                                        <ListItem 
                                             key={index}
-                                            onMouseEnter={() => mouseHover(place.place_id)}
-                                            onMouseLeave={() => mouseLeave()}
-                                            >
-                                            <h3 className="place-name">{place.name}</h3>
-                                            <div className="place-rating">
-                                                <div className="rating-section">
-                                                    <p>{place.rating}</p>
-                                                    <img
-                                                        src={Star}
-                                                        alt="staricon"
-                                                        id="star-icon"
-                                                    />
-                                                    <span>&#183;</span>
-                                                    <p>({place.user_ratings_total}) reviews</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="price-section">
-                                                <>
-                                                    {[...Array(place.price_level)].map( (_, index) => (
-                                                        <img 
-                                                            key={index}
-                                                            src={Dollar}
-                                                            alt="dollaricon"
-                                                            className="dollar"
-                                                            > 
-                                                        </img>
-                                                    ))}
-                                                </>
-                                            </div>
-                                            
-                                            <div className="place-location">
-                                                <p>{place.vicinity}</p>
-                                            </div>
-                                            
-                                            { (place.opening_hours)
-                                            ?
-                                                <div className={place.opening_hours.open_now ? "place-open" : "place-closed"}>
-                                                    <p>{place.opening_hours.open_now ? 'Open' : 'Closed'} </p>
-                                                </div>
-                                            :
-                                                <p>Closed</p>
-                                            }
-                                        </li>
+                                            placeid={place.place_id}
+                                            name={place.name}
+                                            rating={place.rating}
+                                            totalratings={place.user_ratings_total}
+                                            pricelevel={place.price_level}
+                                            vicinity={place.vicinity}
+                                            open={place.opening_hours}
+                                       />
                                     )
                                 })}
                             </>

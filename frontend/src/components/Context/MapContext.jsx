@@ -12,6 +12,7 @@ const MapProvider = props => {
     const [loaded, setLoaded] = useState(false);
     const [places, setPlaces] = useState([]);
     const [sorted, setSorted] = useState([]);
+    const [selected, setSelected] = useState([]);
     const [token, setToken] = useState()
     
     const [filter, setFilter] = useState({
@@ -54,10 +55,11 @@ const MapProvider = props => {
     useEffect( () => {
         if( loading ) {
             const placesHandler = async () => {
-                const data = await getPlaces(lat, lon);
-                setPlaces(data.results);
-                setToken(data.next_page_token)
-                console.log(data);
+                //const data = await getPlaces(lat, lon);
+                //setPlaces(data.results);
+                setPlaces(placestest);
+                //setToken(data.next_page_token)
+                //console.log(data);
             }
             routeHandler();
             placesHandler();
