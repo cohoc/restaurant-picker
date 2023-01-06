@@ -1,25 +1,39 @@
 import React, {useContext} from 'react'
-import MarkerIcon from '../../assets/png/marker.png'
+//import MarkerIcon from '../../assets/png/marker.png'
+import Icon from '../util/Icon/Icon'
 import {MapContext} from '../Context/MapContext'
 
 import './Marker.css'
 
 function Marker(props) {
 
-    const {hover} = useContext(MapContext)
+    const {hover, mouseHover, mouseLeave} = useContext(MapContext)
 
     return (
-        <div className="marker-location">
+        <div className="marker-location"
+            onMouseEnter={() => mouseHover(props.placeid)}
+            onMouseLeave={() => mouseLeave()}
+        >
             <div className="marker-icon-container">
 
-                <img 
-                    src={MarkerIcon} 
-                    className={(props.placeid === hover) ? 'marker-icon marker-hover' : "marker-icon"} 
-                    alt="Place Location"
-                />
+                {props.placeid === hover ? 
+                    <Icon
+                        name="markerhover"
+                        width="28"
+                        height="28"
+                        className="marker-icon marker-hover"
+                    />   
+                :
+                    <Icon
+                        name="marker"
+                        className="marker-icon mk-red"
+                    />
+                }
+                
+                    
 
                 <div 
-                    className={(props.placeid === hover) ? 'marker-place-info marker-place-hover' : 'marker-place-info'}>
+                    className={`marker-place-info ${props.placeid === hover ? 'marker-place-hover': ''} `}>
                     <p>{props.name}</p>
                 </div>
 

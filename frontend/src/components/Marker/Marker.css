@@ -2,7 +2,6 @@
     width: 1.75rem;
     height: 1.75rem;
     display: block;
-    z-index: 999;
 }
 
 .marker-icon-container{
@@ -20,39 +19,39 @@
 }
 
 .marker-hover {
-    transform: scale(1.35);
+    transform: scale(1.15);
     z-index: 999;
+    fill: var(--color-theme-blue);
+    transition: all 250ms ease;
+}
+
+.mk-red{
+    fill: #E74C3C;
 }
 
 .marker-place-info{
+    position: absolute;
+    display: none;
     bottom: 100%;
     left: 100%;
-    display: block;
-    position: absolute;
-    padding: .25rem .5rem;
-    background: var(--color-lg);
-    margin: 2px;
-    opacity: 0;
+    padding: .35rem .5rem;
+    margin-left: 5px;
 }
 
 .marker-place-info p{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    width: fit-content;
-    height: 1rem;
     font-size: .75rem;
+    font-weight: 500;
     letter-spacing: .5px;
-    color: white;
     white-space: nowrap;
-    
+    text-align: center;
+    color: white;
 }
 
 .marker-place-hover{ 
-    opacity: 1;
-    transition: opacity 150ms ease-in;
+    display: inline-block;
+    transition: all 150ms ease-in;
     z-index: 999;
+    background: var(--color-lg);
 }
 
 .marker-user-location{
@@ -111,4 +110,11 @@
 .marker-user-location:hover .marker-user-info{
     opacity: 1;
     transition: all .15s ease-in;
+}
+
+.marker-icon:hover .marker-place-info{
+    opacity: 1;
+    transition: opacity 150ms ease-in;
+    z-index: 999;
+    background: var(--color-lg);
 }

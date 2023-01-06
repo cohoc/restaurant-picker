@@ -54,6 +54,10 @@ function ListItem(props) {
             :
                 <p>Closed</p>
             }
+
+            <div className="place-selector-container">
+
+            </div>
         </li>
     )
     }
