@@ -69,17 +69,14 @@
 
 .place{
     width: 100%;
+    height: auto;
     font-size: 1.5rem;
-    padding: 8px 8px 8px 0px;
+    padding: 1rem;
     color: var(--color-lg);
     border-bottom: 1px solid rgba(0,0,0,.10);
     font-size: 1rem;
     cursor: pointer;
-    padding: 1rem;
-}
-
-.place:hover{
-    background: rgb(240, 240, 240);
+    
 }
 
 .place-name{
@@ -104,10 +101,7 @@
     color: red;
 }
 
-.place-selector-container{
-    width: 100%;
-    height: 50px;
-}
+
 
 .rating-section{
     width: 100%;
@@ -138,4 +132,83 @@
 
 .btn-disabled{
     fill:rgb(186, 186, 186);
+}
+
+.place-selector-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    transition: all 300ms ease;
+}
+
+.selector-icon-container{
+    margin-top: 8px;
+    width: 100%;
+    height: 0px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 300ms ease;
+}
+
+.selector-dropdown-icon{
+    width: 100%;
+    height: 100%;
+    transition: all 300ms ease;
+}
+
+.selector-dropdown-content{
+    width: 100%;
+    height: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility, opacity 350ms linear;
+}
+
+.selector-button{
+    width: 80%;
+    height: 100%;
+    background: var(--color-theme-blue);
+    font-size: 1rem;
+    color: white;
+    overflow: hidden;
+}
+
+.bg-hover{
+    background: rgb(240, 240, 240);
+}
+
+.focused{
+    visibility: visible;
+    opacity: 1;
+    height: 28px;
+    margin-top: 8px;
+    transition: margin, visibility, opacity 350ms linear;
+}
+
+.rot-x{
+    transform: scaleY(-1);
+    transition: all 300ms ease;
+}
+
+.visible{
+    opacity: 1;
+    visibility: visible;
+    height: 16px;
+}
+
+.place:hover .selector-icon-container{
+    visibility: visible;
+    opacity: 1;
+    height: 16px;
+    transition: all 300ms ease;
+}
+
+.place:hover{
+    background: rgb(240, 240, 240);
 }

@@ -1,6 +1,7 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import Star from '../../assets/svg/star.svg'
 import Dollar from '../../assets/svg/dollar.svg'
+import Icon from '../util/Icon/Icon'
 import './ListItem.css'
 
 import { MapContext } from '../Context/MapContext';
@@ -8,9 +9,10 @@ import { MapContext } from '../Context/MapContext';
 function ListItem(props) {
 
     const { mouseHover, mouseLeave} = useContext(MapContext);
+    const [focus, setFocus] = useState(false);
 
     return (
-        <li className="place" 
+        <li className={`place ${focus ? 'bg-hover' : ''}`} 
             onMouseEnter={() => mouseHover(props.placeid)}
             onMouseLeave={() => mouseLeave()}
             >
@@ -56,7 +58,23 @@ function ListItem(props) {
             }
 
             <div className="place-selector-container">
-
+                <button 
+                    className={`selector-icon-container ${focus ? 'visible' : ''}`}
+                    onClick={ ()=> setFocus(!focus) }
+                    >
+                    <Icon
+                        name="chevrondown"
+                        className={`selector-dropdown-icon ${focus ? 'rot-x' : ''}`}
+                    />
+                </button>
+                
+                <div className={`selector-dropdown-content ${focus ? 'focused': ''}`}>
+                    <button
+                        className="selector-button"
+                    >
+                        Select
+                    </button>
+                </div>
             </div>
         </li>
     )
