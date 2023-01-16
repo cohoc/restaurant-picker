@@ -1,0 +1,22 @@
+.selected-container{
+    position: fixed;
+    width: 240px;
+    height: 32px;
+    background: var(--color-theme-blue);
+    margin-left: -120px;
+    bottom: 32px;
+    left: 50%;
+    z-index: 999;
+    border-radius: 15px;
+}
+
+.selected-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: var(--font-style-ub);
+}

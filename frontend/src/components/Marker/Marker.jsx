@@ -7,7 +7,7 @@ import './Marker.css'
 
 function Marker(props) {
 
-    const {hover, mouseHover, mouseLeave} = useContext(MapContext)
+    const {hover, mouseHover, mouseLeave, selected} = useContext(MapContext)
 
     return (
         <div className="marker-location"
@@ -16,26 +16,28 @@ function Marker(props) {
         >
             <div className="marker-icon-container">
 
-                {props.placeid === hover ? 
-                    <Icon
-                        name="markerhover"
-                        width="28"
-                        height="28"
-                        className="marker-icon marker-hover"
-                    />   
+                {props.placeid === hover || (selected.some( (element) => element.place_id === props.placeid)) 
+                ? 
+                    <>
+                        <Icon
+                            name="markerhover"
+                            width="28"
+                            height="28"
+                            className="marker-icon marker-hover"
+                        />   
+
+                        <div 
+                            className="marker-place-info marker-place-hover">
+                            <p>{props.name}</p>
+                        </div>
+                   </> 
                 :
                     <Icon
                         name="marker"
                         className="marker-icon mk-red"
                     />
                 }
-                
-                    
-
-                <div 
-                    className={`marker-place-info ${props.placeid === hover ? 'marker-place-hover': ''} `}>
-                    <p>{props.name}</p>
-                </div>
+            
 
             </div>
         </div>

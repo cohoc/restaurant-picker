@@ -65,7 +65,7 @@ button, textarea, input:focus {
   --color-theme-blue-lighter: rgb(125, 165, 255);
   --color-theme-blue-darker: rgb(40, 125, 210);
   --color-filter-buttons-focus: rgb(60, 105, 135);
-
+  --color-theme-red: rgb(253, 92, 99);
 }
 
 .misc{

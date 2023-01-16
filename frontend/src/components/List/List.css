@@ -135,13 +135,11 @@
 }
 
 .place-selector-container{
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
     height: auto;
-    transition: all 300ms ease;
 }
 
 .selector-icon-container{
@@ -155,7 +153,7 @@
 
 .selector-dropdown-icon{
     width: 100%;
-    height: 100%;
+    max-height: 16px;
     transition: all 300ms ease;
 }
 
@@ -177,10 +175,31 @@
     font-size: 1rem;
     color: white;
     overflow: hidden;
+    border-radius: 5%;
+}
+
+.selector-remove-container{
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.selector-remove{
+    width: 80%;
+    height: 100%;
+    font-size: 1rem;
+    color: white;
 }
 
 .bg-hover{
     background: rgb(240, 240, 240);
+}
+
+.bg-red{
+    background: var(--color-theme-red);
 }
 
 .focused{
@@ -197,9 +216,14 @@
 }
 
 .visible{
+    height: 16px;
     opacity: 1;
     visibility: visible;
-    height: 16px;
+}
+
+.hidden{
+    display: none;
+    
 }
 
 .place:hover .selector-icon-container{

@@ -21,10 +21,11 @@ const MapProvider = props => {
         price: ""
     })
 
-    const routeHandler = () => {
-        window.history.pushState({}, '', `/${lat},${lon}`);
+    const apiIsLoaded = () => {
+        setLoaded(true);
+        console.log("Maps api is loaded");
     }
-
+    
     const mouseHover = (placeid) => {
         setHover(placeid)
     }
@@ -33,10 +34,22 @@ const MapProvider = props => {
         setHover(null);
     }
 
-    const apiIsLoaded = () => {
-        setLoaded(true);
-        console.log("Maps api is loaded");
+    const routeHandler = () => {
+        window.history.pushState({}, '', `/${lat},${lon}`);
     }
+
+    const removeHandler = (placeid) => {
+        setSelected(selected.filter((element) => element.place_id !== placeid));
+
+    }
+
+    const selectHandler = (placeid) => {
+        let value = sorted.find( (element) => element.place_id === placeid);
+        setSelected([...selected, value]);
+        console.log(selected);
+    }
+
+    
 
     useEffect( () => {
 
@@ -173,6 +186,9 @@ const MapProvider = props => {
             hover,
             sorted,
             filter,
+            selected,
+            removeHandler,
+            selectHandler,
             setFilter,
             setPlaces,
             setLat,

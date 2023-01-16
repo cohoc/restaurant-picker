@@ -8,7 +8,8 @@ import { MapContext } from '../Context/MapContext';
 
 function ListItem(props) {
 
-    const { mouseHover, mouseLeave} = useContext(MapContext);
+    const { mouseHover, mouseLeave, removeHandler, selectHandler, selected} = useContext(MapContext);
+    const [clicked, setClicked] = useState(false);
     const [focus, setFocus] = useState(false);
 
     return (
@@ -57,25 +58,47 @@ function ListItem(props) {
                 <p>Closed</p>
             }
 
-            <div className="place-selector-container">
-                <button 
-                    className={`selector-icon-container ${focus ? 'visible' : ''}`}
-                    onClick={ ()=> setFocus(!focus) }
-                    >
-                    <Icon
-                        name="chevrondown"
-                        className={`selector-dropdown-icon ${focus ? 'rot-x' : ''}`}
-                    />
-                </button>
-                
-                <div className={`selector-dropdown-content ${focus ? 'focused': ''}`}>
+            { (selected.some( (element) => element.place_id === props.placeid)) 
+            ? 
+                <div className="selector-remove-container" >
                     <button
-                        className="selector-button"
+                        className="selector-remove bg-red"
+                        onClick={() => {
+                            setClicked(!clicked); 
+                            removeHandler(props.placeid);
+                            setFocus(!focus)
+                        }}
                     >
-                        Select
+                        Remove 
                     </button>
                 </div>
-            </div>
+                
+            : 
+                
+                <div className="place-selector-container">
+                    <button 
+                        className={`selector-icon-container ${focus ? 'visible' : ''}`}
+                        onClick={ () => setFocus(!focus) }
+                        >
+                        <Icon
+                            name="chevrondown"
+                            className={`selector-dropdown-icon ${focus ? 'rot-x' : ''}`}
+                        />
+                    </button>
+                    
+                    <div className={`selector-dropdown-content ${focus ? 'focused': ''}`}>
+
+                        <button
+                            className="selector-button"
+                            onClick={() => {selectHandler(props.placeid); setClicked(!clicked)}}
+                        >
+                            Select
+                        </button>
+
+                    </div>
+                </div>
+            }
+            
         </li>
     )
     }
