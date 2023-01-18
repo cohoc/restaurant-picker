@@ -71,12 +71,15 @@
     width: 100%;
     height: auto;
     font-size: 1.5rem;
-    padding: 1rem;
     color: var(--color-lg);
     border-bottom: 1px solid rgba(0,0,0,.10);
     font-size: 1rem;
     cursor: pointer;
-    
+    transition: all 350ms ease;
+}
+
+.place-content{
+    padding: 1rem 1rem 0rem 1rem;
 }
 
 .place-name{
@@ -138,22 +141,29 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
     width: 100%;
     height: auto;
+    padding-bottom: .75rem;
+    transition: all 350ms ease;
 }
 
 .selector-icon-container{
-    margin-top: 8px;
     width: 100%;
     height: 0px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
     visibility: hidden;
     opacity: 0;
-    transition: all 300ms ease;
+    transition-duration: 300ms;
+    transition-property: height, visibility, opacity;
+    transition-timing-function: ease;
 }
 
 .selector-dropdown-icon{
-    width: 100%;
-    max-height: 16px;
+    width: 16px;
+    height: 16px;
     transition: all 300ms ease;
 }
 
@@ -165,7 +175,7 @@
     justify-content: center;
     visibility: hidden;
     opacity: 0;
-    transition: visibility, opacity 350ms linear;
+    transition: height 150ms ease;
 }
 
 .selector-button{
@@ -175,7 +185,6 @@
     font-size: 1rem;
     color: white;
     overflow: hidden;
-    border-radius: 5%;
 }
 
 .selector-remove-container{
@@ -184,7 +193,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1rem;
+    margin: 1rem 0rem;
 }
 
 .selector-remove{
@@ -205,9 +214,9 @@
 .focused{
     visibility: visible;
     opacity: 1;
-    height: 28px;
+    height: 32px;
     margin-top: 8px;
-    transition: margin, visibility, opacity 350ms linear;
+    transition: height 150ms ease;
 }
 
 .rot-x{
@@ -216,21 +225,22 @@
 }
 
 .visible{
-    height: 16px;
+    height: 24px;
     opacity: 1;
     visibility: visible;
+    transition-duration: 300ms;
+    transition-property: height, visibility, opacity;
+    transition-timing-function: ease;
 }
 
 .hidden{
     display: none;
-    
 }
 
 .place:hover .selector-icon-container{
     visibility: visible;
     opacity: 1;
-    height: 16px;
-    transition: all 300ms ease;
+    height: 24px;
 }
 
 .place:hover{

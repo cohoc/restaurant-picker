@@ -40,7 +40,10 @@ const MapProvider = props => {
 
     const removeHandler = (placeid) => {
         setSelected(selected.filter((element) => element.place_id !== placeid));
+    }
 
+    const removeAll = () => {
+        setSelected([]);
     }
 
     const selectHandler = (placeid) => {
@@ -187,6 +190,7 @@ const MapProvider = props => {
             sorted,
             filter,
             selected,
+            removeAll,
             removeHandler,
             selectHandler,
             setFilter,

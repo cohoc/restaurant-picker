@@ -3,12 +3,16 @@ import {ReactComponent as MarkerAltIcon} from '../../../assets/svg/marker-alt.sv
 import {ReactComponent as MarkerIcon} from '../../../assets/svg/marker.svg'
 import {ReactComponent as MarkerHoverIcon} from '../../../assets/svg/marker-hover.svg'
 import {ReactComponent as ChevronDown} from '../../../assets/svg/chevron-down.svg'
+import {ReactComponent as CancelIcon} from '../../../assets/svg/cancel.svg'
+import {ReactComponent as CheckmarkIcon} from '../../../assets/svg/checkmark.svg'
 
 const iconType = {
     markeralt: MarkerAltIcon,
     marker: MarkerIcon,
     markerhover: MarkerHoverIcon,
     chevrondown: ChevronDown,
+    cancel: CancelIcon,
+    checkmark: CheckmarkIcon
 }
 
 const IconComponent = ({name, ...props}) => {
