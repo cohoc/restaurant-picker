@@ -5,7 +5,7 @@ import './Selected.css'
 
 function Selected() {
 
-    const {selected, removeAll} = useContext(MapContext);
+    const {selected, removeAll, resultHandler} = useContext(MapContext);
 
     return (
         <>
@@ -26,7 +26,9 @@ function Selected() {
                     {selected.length} Selected
                     </p>
 
-                    <button className="selected-button check">
+                    <button className="selected-button check"
+                        onClick={() => resultHandler()}
+                    >
                         <Icon
                             name="checkmark"
                             className="selected-icon"

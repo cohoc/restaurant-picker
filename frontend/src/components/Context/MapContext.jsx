@@ -5,12 +5,14 @@ import { placestest } from '../../testing/places'
 const MapContext = createContext();
 const MapProvider = props => {
 
+    const [choice, setChoice] = useState([]);
     const [loading, setLoading] = useState(false);
     const [hover, setHover] = useState(null);
     const [lat, setLat] = useState();
     const [lon, setLon] = useState();
     const [loaded, setLoaded] = useState(false);
     const [places, setPlaces] = useState([]);
+    const [results, setResults] = useState(false);
     const [sorted, setSorted] = useState([]);
     const [selected, setSelected] = useState([]);
     const [token, setToken] = useState()
@@ -34,12 +36,17 @@ const MapProvider = props => {
         setHover(null);
     }
 
+    const resultHandler = () => {
+        console.log("Randomizing restaurants");
+        setResults(!results);
+    }
+
     const routeHandler = () => {
         window.history.pushState({}, '', `/${lat},${lon}`);
     }
 
     const removeHandler = (placeid) => {
-        setSelected(selected.filter((element) => element.place_id !== placeid));
+        setSelected(selected.filter((element) => element.placeid !== placeid));
     }
 
     const removeAll = () => {
@@ -48,7 +55,20 @@ const MapProvider = props => {
 
     const selectHandler = (placeid) => {
         let value = sorted.find( (element) => element.place_id === placeid);
-        setSelected([...selected, value]);
+        
+        let h = 225;
+        let s = Math.floor(Math.random() * 60 )+ 40 + "%";
+        let l = Math.floor(Math.random() * 40 ) + 30 + "%";
+
+        let color = `${h},${s},${l}`;
+        
+        setSelected([...selected, 
+            {
+                placeid: value.place_id,
+                name: value.name,
+                color: color 
+            }
+        ]);
         console.log(selected);
     }
 
@@ -181,17 +201,19 @@ const MapProvider = props => {
 
     return (
         <MapContext.Provider value={{
+            filter,
+            hover,
             lat,
             lon,
             loaded,
             loading,
             places,
-            hover,
+            results,
             sorted,
-            filter,
             selected,
             removeAll,
             removeHandler,
+            resultHandler,
             selectHandler,
             setFilter,
             setPlaces,

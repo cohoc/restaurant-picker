@@ -1,0 +1,92 @@
+.results-background{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.35);
+    z-index: 1001;
+    visibility: visible;
+    opacity: 1;
+    transition: all 300ms ease;
+}
+
+.results-container{
+    width: 80%;
+    height: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-theme-blue);
+}
+
+.randomize-button{
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    letter-spacing: 1px;
+    border-radius: 15px;
+    border: 3px solid white;
+    background: var(--color-theme-blue);
+    color: white;
+}
+
+.randomize-choice{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+
+.randomize-container{
+    width: 100%;
+    min-height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.randomize-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 5vh;
+    margin: 1px 0px;
+}
+
+.randomize-item:first-child{
+    margin-top: 0px;
+    margin-bottom: 1px;
+}
+
+.randomize-item:last-child{
+    margin-top: 1px;
+    margin-bottom: 0px;
+}
+
+.randomize-list{
+    width: clamp(420px, 80%, 620px);
+    border: 6px solid rgb(51, 51, 51);
+}
+
+.res-hidden{
+    opacity: 0;
+    visibility: hidden;
+    transition: all 300ms ease;
+}
+
+.restaurant-choice{
+    color: white;
+}
+
+.button-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

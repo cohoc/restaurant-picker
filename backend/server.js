@@ -33,6 +33,18 @@ app.get('/restaurants/:lat/:lon', (req, res) => {
     }
 })
 
+app.get('/restaurants/:placeid', (req, res) => {
+    const detailurl  = 'https://maps.googleapis.com/maps/api/place/details/json?'
+    const id = req.params.placeid;
+
+    try{
+        axios.get(`${detailurl}${id}&key=${process.env.GOOGLE_PLACES_KEY}`);
+    }
+    catch(error){
+        res.status(400).json({message: error.message});
+    }
+})
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })

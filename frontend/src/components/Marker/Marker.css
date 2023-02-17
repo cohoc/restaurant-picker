@@ -61,7 +61,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
     background: var(--color-theme-blue);
     border-radius: 50%;
 }

@@ -16,7 +16,7 @@ function Marker(props) {
         >
             <div className="marker-icon-container">
 
-                {props.placeid === hover || (selected.some( (element) => element.place_id === props.placeid)) 
+                {props.placeid === hover || (selected.some( (element) => element.placeid === props.placeid)) 
                 ? 
                     <>
                         <Icon

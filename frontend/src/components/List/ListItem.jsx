@@ -70,7 +70,7 @@ function ListItem(props) {
             </div>
             
 
-            { (selected.some( (element) => element.place_id === props.placeid)) 
+            { (selected.some( (element) => element.placeid === props.placeid)) 
             ? 
                 <div className="selector-remove-container" >
                     <button
