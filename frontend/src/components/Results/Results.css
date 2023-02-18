@@ -82,6 +82,8 @@
 
 .restaurant-choice{
     color: white;
+    font-size: 20px;
+    font-family: var(--font-style-la);
 }
 
 .button-container{

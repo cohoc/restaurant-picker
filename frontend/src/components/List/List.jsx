@@ -6,7 +6,7 @@ import ListItem from './ListItem';
 
 function List() {
 
-    const { filter, filterClear, handleFilter, sorted} = useContext(MapContext);
+    const { filter, filterClear, handleFilter, removeAll, sorted, selected} = useContext(MapContext);
 
     const [page, setPage] = useState(1);
 
@@ -63,6 +63,16 @@ function List() {
                         >
                             Clear Filters
                         </button> 
+                }
+
+                {selected.length > 0 &&
+                    <button 
+                        type="button"
+                        className="dropdown-btn btn-rmall"
+                        onClick={ () => removeAll() }
+                    >
+                        {`Remove (${selected.length})`}
+                    </button>
                 }
 
             </div>

@@ -15,7 +15,7 @@ const MapProvider = props => {
     const [results, setResults] = useState(false);
     const [sorted, setSorted] = useState([]);
     const [selected, setSelected] = useState([]);
-    const [token, setToken] = useState()
+    const [token, setToken] = useState();
     
     const [filter, setFilter] = useState({
         rating: "",
@@ -37,7 +37,7 @@ const MapProvider = props => {
     }
 
     const resultHandler = () => {
-        console.log("Randomizing restaurants");
+        //console.log("Randomizing restaurants");
         setResults(!results);
     }
 
@@ -56,20 +56,13 @@ const MapProvider = props => {
     const selectHandler = (placeid) => {
         let value = sorted.find( (element) => element.place_id === placeid);
         
-        let h = 225;
-        let s = Math.floor(Math.random() * 60 )+ 40 + "%";
-        let l = Math.floor(Math.random() * 40 ) + 30 + "%";
-
-        let color = `${h},${s},${l}`;
-        
         setSelected([...selected, 
             {
                 placeid: value.place_id,
                 name: value.name,
-                color: color 
             }
         ]);
-        console.log(selected);
+        //console.log(selected);
     }
 
     

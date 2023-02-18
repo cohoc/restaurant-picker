@@ -133,6 +133,11 @@
     height: 20px;
 }
 
+.btn-rmall{
+    color: white;
+    background: var(--color-theme-red);
+}
+
 .btn-disabled{
     fill:rgb(186, 186, 186);
 }

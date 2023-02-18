@@ -8,12 +8,6 @@ function Results() {
     const [restaurant, setRestaurant] = useState({})
     const {results, resultHandler, selected} = useContext(MapContext); 
 
-    const choiceHandler = () => {
-        let choice = Math.floor(Math.random() * selected.length );
-        setRestaurant(selected[choice]);
-        console.log(JSON.stringify(restaurant));
-    }
-
     const handleClick = (e) => {
         if (resultClick.current.contains(e.target)){
             return;
@@ -23,9 +17,16 @@ function Results() {
         }
     }
 
+    const choiceHandler = () => {
+        let choice = Math.floor(Math.random() * selected.length );
+        setRestaurant(selected[choice]);
+        //console.log(JSON.stringify(restaurant));
+    }
+
     useEffect(() => {
         if(results) {
             document.addEventListener("mousedown", handleClick);
+            choiceHandler();
         }
         else {
             document.removeEventListener("mousedown", handleClick);
@@ -50,15 +51,6 @@ function Results() {
                         : '' }
                     </div>
                       
-                    <div className="button-container">
-                        <button
-                            type='button'
-                            className="randomize-button"
-                            onClick={() => {choiceHandler()}}
-                        >
-                            Randomize
-                        </button>
-                    </div>
                 </div>
             </div>
 
