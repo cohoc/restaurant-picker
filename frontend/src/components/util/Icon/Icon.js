@@ -5,6 +5,10 @@ import {ReactComponent as MarkerHoverIcon} from '../../../assets/svg/marker-hove
 import {ReactComponent as ChevronDown} from '../../../assets/svg/chevron-down.svg'
 import {ReactComponent as CancelIcon} from '../../../assets/svg/cancel.svg'
 import {ReactComponent as CheckmarkIcon} from '../../../assets/svg/checkmark.svg'
+import {ReactComponent as ComputerIcon} from '../../../assets/svg/computer.svg'
+import {ReactComponent as LocationIcon} from '../../../assets/svg/location.svg'
+import {ReactComponent as PhoneIcon} from '../../../assets/svg/phonecall.svg'
+
 
 const iconType = {
     markeralt: MarkerAltIcon,
@@ -12,7 +16,10 @@ const iconType = {
     markerhover: MarkerHoverIcon,
     chevrondown: ChevronDown,
     cancel: CancelIcon,
-    checkmark: CheckmarkIcon
+    checkmark: CheckmarkIcon,
+    computer: ComputerIcon,
+    location: LocationIcon,
+    phone: PhoneIcon
 }
 
 const IconComponent = ({name, ...props}) => {

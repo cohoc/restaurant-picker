@@ -16,3 +16,8 @@ export const getDetails = async (placeid) => {
     const response = await axios.get(`${url}/${placeid}`);
     return (response.data);
 }
+
+export const getPhotos = async (photoref, maxwidth, maxheight) => {
+    const response =  await axios.get(`${url}/${photoref}/${maxwidth}/${maxheight}`);
+    return (response.data);
+}

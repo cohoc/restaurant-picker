@@ -38,7 +38,11 @@ app.get('/restaurants/:placeid', (req, res) => {
     const id = req.params.placeid;
 
     try{
-        axios.get(`${detailurl}${id}&key=${process.env.GOOGLE_PLACES_KEY}`);
+        axios.get(`${detailurl}place_id=${id}&key=${process.env.GOOGLE_PLACES_KEY}`)
+            .then( function(response){
+                res.status(200).json(response.data)
+            })
+    
     }
     catch(error){
         res.status(400).json({message: error.message});
