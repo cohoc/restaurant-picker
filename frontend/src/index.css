@@ -71,6 +71,7 @@ button, textarea, input:focus {
 .misc{
   --dash-items-border: 1px solid rgba(0,0,0,.10);
   --box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.3);
+  --box-shadow-vertical: 0px 3px 10px -9px rgba(0,0,0,0.75);
   --box-shadow-blue: 0px 0px 7px 0px rgba(125,165,255,0.1);
 }
 

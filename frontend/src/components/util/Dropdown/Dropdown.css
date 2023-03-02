@@ -1,7 +1,9 @@
 .dropdown-container{
     position: relative;
-    margin-right: .5rem;
-    margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .dropdown-active{
@@ -97,3 +99,20 @@
     background: var(--color-filter-buttons-focus);
 }
 
+@media screen and (width > 992px){
+    .dropdown-container{
+        width: 100%;
+    }
+    .dropdown-btn{
+        width: 75%;
+    }
+}
+
+@media screen and (width < 992px){
+    .dropdown-container{
+        width: 100%;
+    }
+    .dropdown-btn{
+        flex: 1 0 100%;
+    }
+}

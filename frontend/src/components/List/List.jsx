@@ -21,9 +21,6 @@ function List() {
     return (
 
         <div className="list-container">
-            <h2 className="list-header">
-                Choose your restaurant
-            </h2>
 
             <div className="list-filters-container">
 
