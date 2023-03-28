@@ -1,4 +1,5 @@
 .marker-location{
+    position: relative;
     width: 1.75rem;
     height: 1.75rem;
     display: block;
@@ -8,7 +9,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 .marker-icon{
@@ -16,6 +16,54 @@
     height: 100%;
     transition: all 200ms ease-in-out;
     z-index: 3;
+}
+
+.marker-info{
+    max-height: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+}
+
+.marker-info-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: .75rem;
+    letter-spacing: .5px;
+    overflow: hidden;
+    transition: all 500ms ease;
+}
+
+.marker-info-content .border{
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, .5);
+    margin: 4px 0px;
+}
+
+.marker-info-content.open{
+    max-height: 135px;
+    transition: all 500ms ease;
+}
+
+.marker-info-content.closed{
+    max-height: 0px;
+    transition: all 500ms ease;
+}
+
+.marker-info .dollar{
+    width: 10px;
+    margin-right: 2px;
+    fill: var(--color-theme-blue-lighter);
+}
+
+.marker-info span{
+    font-size: 1.5rem;
+    margin: 0px 2px;
+    color: white;
 }
 
 .marker-hover {
@@ -30,28 +78,90 @@
 }
 
 .marker-place-info{
-    position: absolute;
-    display: none;
+    position: relative;
+    min-width: 135px;
     bottom: 100%;
     left: 100%;
+    background: var(--color-lg);position: absolute;
+    display: none;
     padding: .35rem .5rem;
     margin-left: 5px;
+    z-index: 999;
+    transition: all 500ms ease-in;
 }
 
-.marker-place-info p{
-    font-size: .75rem;
+.marker-place-info.none{
+    display: none;
+}
+
+.marker-place-info.show{
+    display: inline-block;
+}
+
+.marker-place-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 6px;
+}
+
+.marker-place-header p{
+    font-size: .85rem;
     font-weight: 500;
     letter-spacing: .5px;
     white-space: nowrap;
-    text-align: center;
+    transition: color 150ms linear;
+}
+
+.marker-hr{
+    color: var(--color-theme-red);
+}
+
+.marker-hw{
     color: white;
 }
 
-.marker-place-hover{ 
-    display: inline-block;
-    transition: all 150ms ease-in;
-    z-index: 999;
+#marker-ratings{
+    margin-right: 4px;
+}
+
+.marker-remove-button{
+    height: 20px;
+    width: 24px;
+    fill: var(--color-theme-red-lighter);
+}
+
+.marker-selected-container{
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    padding: .35rem .5rem;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    display: block;
+}
+.marker-selected-container:hover .marker-place-header p{
+    color: var(--color-theme-red);
+}
+/*
+.marker-selected-container:hover .marker-selected-remove{
+    width: 100%;
+}
+*/
+
+.marker-selected-remove{
+    top: 50%;
+    left: 50%;
+    height: 95%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
     background: var(--color-lg);
+    transition: width 500ms ease;
 }
 
 .marker-user-location{
@@ -116,4 +226,46 @@
     transition: opacity 150ms ease-in;
     z-index: 999;
     background: var(--color-lg);
+}
+
+
+.marker-selector-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.marker-selector-button{
+    width: 100%;
+    height: 1.5rem;
+    color: white;
+    background: var(--color-theme-blue);
+    margin-top: 4px;
+}
+
+.marker-vicinity{
+    min-height:20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    color: white;
+}
+
+.marker-vicinity p{
+    text-align: start;
+
+}
+
+.width-100{
+    width: 100%;
+}
+
+.width-0{
+    width: 0%;
 }

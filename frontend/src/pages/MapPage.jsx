@@ -12,7 +12,6 @@ function MapPage() {
             <Results/>
             <Selected/>
             <Map/>
-            
         </section>
   
     ) 

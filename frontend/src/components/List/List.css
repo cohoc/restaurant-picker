@@ -1,8 +1,13 @@
 .list-container{
-    flex: 0 1 30%;
+    top: 0%;
+    left: 0%;
+    width: clamp(200px, 30vw, 360px);
+    height: calc(100vh - 60px);
+    position: absolute;
     display: flex;
     flex-direction: column;
     z-index: 999;
+    background: rgba(0,0,0,.75);
 }
 
 .list-header{
@@ -17,7 +22,7 @@
     width: 100%;
     padding: 1rem;
     column-gap: 10px;
-    row-gap: 5px;
+    row-gap: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -28,6 +33,19 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+}
+
+.list-restaurants-container::-webkit-scrollbar{
+    width: 6px;
+}
+
+.list-restaurants-container::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+.list-restaurants-container::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,.5);
+    border-radius: 15px;
 }
 
 .list-restaurants{
@@ -47,9 +65,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: white;
-    color: var(--font-lgr);
-    border-top: 1px solid rgba(0,0,0,.05);
+    color: white;
+    border-top: 1px solid rgba(255,255,255,.5);
 }
 
 .list-page-buttons{
@@ -70,14 +87,23 @@
 }
 
 .place{
+    position: relative;
     width: 100%;
     height: auto;
     font-size: 1.5rem;
-    color: var(--color-lg);
-    border-bottom: 1px solid rgba(0,0,0,.10);
     font-size: 1rem;
     cursor: pointer;
     transition: all 350ms ease;
+}
+
+.place:before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    height: 1px;
+    border-bottom: 1px solid rgba(255,255,255,.3);
 }
 
 .place-content{
@@ -88,7 +114,6 @@
     font-size: 1.25rem;
     font-family: var(--font-style-la);
     font-weight: 600;
-    color: var(--color-dgr);
 }
 
 .place-rating{
@@ -99,7 +124,7 @@
 }
 
 .place-open{
-    color: green;
+    color: rgb(0, 175, 0);
 }
 
 .place-closed{
@@ -128,6 +153,7 @@
 .price-section > .dollar{
     width: 10px;
     margin-right: 4px;
+    fill: var(--color-theme-blue);
 }
 
 #star-icon{
@@ -172,6 +198,7 @@
     width: 16px;
     height: 16px;
     transition: all 300ms ease;
+    fill: white;
 }
 
 .selector-dropdown-content{
@@ -196,23 +223,22 @@
 
 .selector-remove-container{
     width: 100%;
-    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1rem 0rem;
+    margin-top: .75rem;
+    padding-bottom: .75rem;
 }
 
 .selector-remove{
     width: 80%;
-    height: 100%;
+    height: 32px;
+
     font-size: 1rem;
     color: white;
 }
 
-.bg-hover{
-    background: rgb(240, 240, 240);
-}
+
 
 .bg-red{
     background: var(--color-theme-red);
@@ -250,7 +276,9 @@
     height: 24px;
 }
 
-.place:hover{
-    background: rgb(240, 240, 240);
+@media screen and (width < 992px){
+    .list-filters-container{
+        row-gap: 5px;
+    }
 }
 

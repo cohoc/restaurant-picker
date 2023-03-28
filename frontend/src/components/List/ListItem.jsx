@@ -43,13 +43,11 @@ function ListItem(props) {
                 <div className="price-section">
                     <>
                         {[...Array(props.pricelevel)].map( (_, index) => (
-                            <img 
+                            <Icon 
                                 key={index}
-                                src={Dollar}
-                                alt="dollaricon"
+                                name="dollar"
                                 className="dollar"
-                                > 
-                            </img>
+                            />
                         ))}
                     </>
                 </div>

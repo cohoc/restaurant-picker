@@ -50,7 +50,12 @@ function Map() {
                         return(
                             <Marker 
                                 name={place.name}
+                                open={place.opening_hours}
                                 placeid={place.place_id}
+                                price={place.price_level}
+                                rating={place.rating}
+                                totalratings={place.user_ratings_total}
+                                vicinity={place.vicinity}
                                 key={index}
                                 lat={place.geometry.location.lat}
                                 lng={place.geometry.location.lng}

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useRef} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { MapContext } from '../Context/MapContext'
 import { getDetails } from '../../api';
 import { choicetest } from '../../testing/choice';
@@ -12,12 +12,13 @@ function Results() {
     const [loading, setLoading] = useState(false);
     const [restaurant, setRestaurant] = useState({})
     const [rating, setRating] = useState(0);
+    const [slide, setSlide] = useState(0);
     const {results, resultHandler, selected} = useContext(MapContext); 
 
     const choiceHandler = async () => {
         setLoading(true);
-        let index = Math.floor(Math.random() * selected.length );
-        let choice = selected[index].placeid;
+        //let index = Math.floor(Math.random() * selected.length );
+        //let choice = selected[index].placeid;
         //const data = await getDetails(choice);
         //setRestaurant(data.result);
         setRestaurant(choicetest)
@@ -38,6 +39,19 @@ function Results() {
         console.log(rwidth);
         setLoading(false);
         console.log("resize handler")
+    }
+
+    const nextSlide = () => {
+        setSlide( (slide + 1) % restaurant.reviews.length );
+    }
+
+    const previousSlide = () => {
+        let nextSlide = slide - 1;
+        if(nextSlide < 0){
+            setSlide(restaurant.reviews.length - 1);
+        } else {
+            setSlide(nextSlide);
+        }
     }
 
     useEffect(() => {
@@ -84,6 +98,8 @@ function Results() {
                                                         </div>
                                                     ))}
                                                 </div>
+
+                                                <span id="spacer">-</span>
                                                 
 
                                                 <div className="price-container">
@@ -104,6 +120,9 @@ function Results() {
                                                         className="fullrating">
                                                         
                                                     </span>
+
+                                                    <span id="spacer">-</span>
+
                                                     <p>{restaurant.user_ratings_total} Reviews</p>
                                             </div>
 
@@ -116,163 +135,282 @@ function Results() {
                                     </div>
                                 </div>
 
-                                <div className="choice-content-container">
+                                <div className="choice-info-container">
                                     <div className="choice-info space res-pad">
 
                                         <div className="info-row">
-                                            <Icon
-                                                name="location"
-                                                className="info-icon"
-                                            />
-                                            <p>{restaurant.formatted_address}</p>
-                                        </div>
 
-                                        <div className="info-row">
-                                            <Icon
-                                                name="computer"
-                                                className="info-icon"
-                                            />
-                                            <a 
-                                                href={`${restaurant.website}`}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                {restaurant.website}
-                                            </a>
-                                        </div>
-
-                                        <div className="info-row">
-                                            <Icon
-                                                name="phone"
-                                                className="info-icon"
-                                            />
-                                            <p>{restaurant.formatted_phone_number}</p>
-                                        </div>
-
-                                    </div>
-
-                                    <div className="choice-other-info">
-
-                                    <div className="amenities-container">
-                                        <p>Delivery</p>
-
-                                        {(restaurant.delivery === true)
-                                        ?
-                                            <Icon
-                                                name="checkmark"
-                                                fill="#00FF00"
-                                                className="info-icon"
-                                            />
-                                        
+                                            <div className="icon-container">
+                                                <Icon
+                                                    name="location"
+                                                    className="info-icon"
+                                                />
+                                            </div>
                                             
-                                        :
-                                            <div className="icon-container">
-                                                <Icon
-                                                    name="cancel"
-                                                    fill="#FF5A64" 
-                                                    className="info-icon x-icon"
-                                                />
+                                            <div className="info-text">
+                                                <p>{restaurant.formatted_address}</p>
                                             </div>
-                                        }
-                                        
-                                    </div>
-
-                                    <div className="amenities-container">
-                                        <p>Takeout</p>
-
-                                        {(restaurant.takeout === true)
-                                        ?
-                                            <Icon
-                                                name="checkmark"
-                                                fill="#00FF00"
-                                                className="info-icon"
-                                            />
-                                        :
-                                            <div className="icon-container">
-                                                <Icon
-                                                    name="cancel"
-                                                    fill="#FF5A64" 
-                                                    className="info-icon x-icon"
-                                                />
-                                            </div>
-                                        }
-                                        
-                                    </div>
-
-
-                                    <div className="amenities-container">
-                                        <p>Dine in</p>
-                                        { (restaurant.dine_in === true) 
-                                        ?
-                                            <Icon
-                                                name="checkmark"
-                                                fill="#00FF00"
-                                                className="info-icon"
-                                            />
-                                        :
-                                            <div className="icon-container">
-                                                <Icon
-                                                    name="cancel"
-                                                    fill="#FF5A64" 
-                                                    className="info-icon x-icon"
-                                                />
-                                            </div>
-                                        }
-                                        
-                                    </div>
-
-                                    <div className="amenities-container">
-                                        <p>Reservable</p>
-
-                                        {(restaurant.reservable === true)
-                                        ?
-                                            <Icon
-                                                name="checkmark"
-                                                fill="#00FF00"
-                                                className="info-icon"
-                                            />
-                                        :
-                                        
-                                            <div className="icon-container">
-                                                <Icon
-                                                    name="cancel"
-                                                    fill="#FF5A64" 
-                                                    className="info-icon x-icon"
-                                                />
-                                            </div>
-                                        }
-                                        
-                                    </div>
-                                                    
-                                    </div>
-
-                                    {/*(restaurant.opening_hours != null) 
-                                        ? 
-                                            <ul className="choice-weekdays space">
-                                            {restaurant.opening_hours.weekday_text.map((weekday, index) => {
-                                                return(
-                                                    <li key={index} className="weekday choice-subfont">
-                                                        {weekday}
-                                                    </li>
-                                                )
-                                                }
-                                            )}
-                                            </ul>
-                                        : 
-                                            ''
-                                            */}
-                                    {(restaurant.opening_hours != null) 
-                                    ?
-                                        <div className="choice-other-info">
-                                            <p>Hours: </p>
-                                            <p>{restaurant.opening_hours.weekday_text[day]}</p>
                                         </div>
-                                    :
-                                        ''
-                                    }
-                                    
+
+                                        <div className="info-row">
+                                            <div className="icon-container">
+                                                <Icon
+                                                    name="computer"
+                                                    className="info-icon"
+                                                />
+                                            </div>
+                                            <div className="info-text">
+                                                <a 
+                                                    href={`${restaurant.website}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    {restaurant.website}
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div className="info-row">
+                                            <div className="icon-container">
+                                                <Icon
+                                                    name="phone"
+                                                    className="info-icon"
+                                                />
+                                            </div>
+                                            <div className="info-text">
+                                                <p>{restaurant.formatted_phone_number}</p>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="other-info-container">
+    
+                                        {(restaurant.opening_hours != null)
+                                        ?
+                                            <div className="choice-other-info">
+                                                <p className="info-topic">Hours: </p>
+                                                <div className="hours-container">
+                                                    <p>{restaurant.opening_hours.weekday_text[day]}</p>
+                                                </div>
+                                            </div>
+                                        :
+                                            ''
+                                        }
+    
+                                        <div className="choice-other-info">
+                                            <p className="info-topic">Amenities: </p>
+    
+                                            <div className="amenities-container">
+                                                <div className="amenities">
+                                                    <p>Delivery</p>
+    
+                                                    {(restaurant.delivery === true)
+                                                    ?
+                                                        <Icon
+                                                            name="checkmark"
+                                                            fill="#00FF00"
+                                                            className="info-icon"
+                                                        />
+    
+                                                    :
+                                                        <div className="icon-container">
+                                                            <Icon
+                                                                name="cancel"
+                                                                fill="#FF5A64"
+                                                                className="info-icon x-icon"
+                                                            />
+                                                        </div>
+                                                    }
+    
+                                                </div>
+    
+                                                <div className="amenities">
+                                                    <p>Takeout</p>
+    
+                                                    {(restaurant.takeout === true)
+                                                    ?
+                                                        <Icon
+                                                            name="checkmark"
+                                                            fill="#00FF00"
+                                                            className="info-icon"
+                                                        />
+                                                    :
+                                                        <div className="icon-container">
+                                                            <Icon
+                                                                name="cancel"
+                                                                fill="#FF5A64"
+                                                                className="info-icon x-icon"
+                                                            />
+                                                        </div>
+                                                    }
+    
+                                                </div>
+    
+    
+                                                <div className="amenities">
+                                                    <p>Dine in</p>
+                                                    { (restaurant.dine_in === true)
+                                                    ?
+                                                        <Icon
+                                                            name="checkmark"
+                                                            fill="#00FF00"
+                                                            className="info-icon"
+                                                        />
+                                                    :
+                                                        <div className="icon-container">
+                                                            <Icon
+                                                                name="cancel"
+                                                                fill="#FF5A64"
+                                                                className="info-icon x-icon"
+                                                            />
+                                                        </div>
+                                                    }
+    
+                                                </div>
+    
+                                                <div className="amenities">
+                                                    <p>Reservable</p>
+    
+                                                    {(restaurant.reservable === true)
+                                                    ?
+                                                        <Icon
+                                                            name="checkmark"
+                                                            fill="#00FF00"
+                                                            className="info-icon"
+                                                        />
+                                                    :
+    
+                                                        <div className="icon-container">
+                                                            <Icon
+                                                                name="cancel"
+                                                                fill="#FF5A64"
+                                                                className="info-icon x-icon"
+                                                            />
+                                                        </div>
+                                                    }
+    
+                                                </div>
+    
+                                            </div>
+    
+                                        </div>
+    
+                                        <div className="choice-other-info">
+                                            <p className="info-topic">Serves:</p>
+                                            <div className="serves-container">
+                                                {(restaurant.serves_breakfast === true)
+                                                    ?
+                                                        <p className="serveitem">Breakfast</p>
+                                                    :
+                                                        ''
+                                                }
+    
+                                                {(restaurant.serves_brunch === true)
+                                                    ?
+                                                        <p className="serveitem">Brunch</p>
+                                                    :
+                                                        ''
+                                                }
+    
+                                                {(restaurant.serves_lunch === true)
+                                                    ?
+                                                        <p className="serveitem">Lunch</p>
+                                                    :
+                                                        ''
+                                                }
+    
+                                                {(restaurant.serves_dinner === true)
+                                                    ?
+                                                        <p className="serveitem">Dinner</p>
+                                                    :
+                                                        ''
+                                                }
+    
+                                                {(restaurant.vegetarian_food === true)
+                                                    ?
+                                                        <p className="serveitem">Vegetarian Food</p>
+                                                    :
+                                                        ''
+                                                }
+    
+                                                {(restaurant.serves_beer === true)
+                                                    ?
+                                                        <p className="serveitem">Beer</p>
+                                                    :
+                                                        ''
+                                                }
+    
+                                                {(restaurant.serves_wine === true)
+                                                    ?
+                                                        <p className="serveitem">Wine</p>
+                                                    :
+                                                        ''
+                                                }
+                                            </div>
+    
+                                        </div>
+                                    </div>
+
+                                    <div className="choice-reviews-container review-font">
+                                        {(typeof restaurant.reviews != 'undefined')
+                                        ?
+                                            <div className="review-carousel">
+                                                <div className="review-carousel-track"
+                                                    style={{transform: `translateX(-${slide * 100}%)`}}>
+                                                    {restaurant.reviews.map((review, index) => {
+                                                        return(
+                                                            <div
+                                                                key={index}
+                                                                className="carousel-slide"
+                                                            >
+                                                                <div className="review-heading">
+                                                                    <h2>{review.author_name}</h2>
+                                                                    <div className="rev-container">
+                                                                        {[...Array(review.rating)].map( (_, index) => (
+                                                                            <span
+                                                                                key={index}
+                                                                                className="review-star"
+                                                                            >
+                                                                                &#9733;
+                                                                            </span>
+                                                                        ))}
+                                                                        <span id="spacer">-</span>
+                                                                        <p>{review.relative_time_description}</p>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <p>{review.text}</p>
+                                                            
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+
+                                                <div className="carousel-buttons-container">
+                                                    {[...Array(restaurant.reviews.length)].map( (_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            className={`carousel-button ${(slide === index) ? 'car-active': 'car-inactive'}`}
+                                                            onClick={() => setSlide(index)}
+                                                        />
+
+                                                    ))}
+                                                    
+                                                    
+
+
+                                                </div>
+
+                                            </div> 
+                                        :
+                                            ''
+                                        }
+                                    </div>
+
                                 </div>
-                                
                                 
                                 <button 
                                     type='button'

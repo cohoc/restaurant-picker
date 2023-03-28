@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    transition: all 250ms ease;
 }
 
 .dropdown-active{
@@ -11,13 +11,13 @@
 }
 
 .dropdown-hidden{
-    background: rgb(150, 160, 175);
+    background: var(--color-theme-blue);
 }
 
 .dropdown-btn{
     min-width: 90px;
     height: 40px;
-    padding: 0 .75rem;
+    padding: 0 .5rem;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -99,19 +99,12 @@
     background: var(--color-filter-buttons-focus);
 }
 
-@media screen and (width > 992px){
-    .dropdown-container{
-        width: 100%;
-    }
-    .dropdown-btn{
-        width: 75%;
-    }
-}
-
 @media screen and (width < 992px){
+
     .dropdown-container{
         width: 100%;
     }
+    
     .dropdown-btn{
         flex: 1 0 100%;
     }
