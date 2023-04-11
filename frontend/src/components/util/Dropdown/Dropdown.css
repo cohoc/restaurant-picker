@@ -7,7 +7,7 @@
 }
 
 .dropdown-active{
-    background: var(--color-filter-buttons-focus);
+    background: var(--dropdown-selected-bg);
 }
 
 .dropdown-hidden{

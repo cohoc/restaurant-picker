@@ -6,16 +6,12 @@ import ListItem from './ListItem';
 
 function List() {
 
-    const { filter, filterClear, handleFilter, removeAll, sorted, selected} = useContext(MapContext);
+    const { filter, filterClear, getNextPlaces, handleFilter, removeAll, sorted, selected, token} = useContext(MapContext);
 
     const [page, setPage] = useState(1);
 
     const nextButton = () => {
         setPage(page + 1)
-    }
-
-    const prevButton = () => {
-        setPage(page - 1)
     }
 
     return (
@@ -25,7 +21,7 @@ function List() {
             <div className="list-filters-container">
 
                 <Dropdown
-                    items={["Highest Rating", "Total Ratings", "Price Level", "Open Now"]}
+                    items={["Highest Rating", "Total Ratings", "Price Level", "A - Z"]}
                     name="rating"
                     placeholder="Filter"
                     filter={filter.rating}
@@ -103,29 +99,23 @@ function List() {
                 
 
             </div>
-            <div className="list-page-container">
-                <p>Showing 1-20</p>
-                <p>{page}</p>
-                <div className="list-page-buttons">
+            <div className="list-next-container">
+                <p>Showing 1-{sorted.length}</p>
+                
+                <div className="list-next-button">
+                    
                     <button 
-                        className="page-button" 
-                        onClick={prevButton}
-                        disabled={(page > 1) ? false : true}
+                        className={`next-button ${(page < 3) ? 'enabled' : 'disabled'}`}
+                        onClick={() => {
+                            nextButton();
+                            getNextPlaces();
+                            filterClear();
+                        }}
+                        disabled={( page < 3 ) ? false : true}
                         >
-                        <svg xmlns="http://www.w3.org/2000/svg" className={(page > 1) ? "button-icon" : "button-icon btn-disabled"} viewBox="0 0 512 512">
-                            <path d="M213.7 256 380.9 81.9c4.2-4.3 4.1-11.4-.2-15.8l-29.9-30.6c-4.3-4.4-11.3-4.5-15.5-.2L131.1 247.9c-2.2 2.2-3.2 5.2-3 8.1-.1 3 .9 5.9 3 8.1l204.2 212.7c4.2 4.3 11.2 4.2 15.5-.2l29.9-30.6c4.3-4.4 4.4-11.5.2-15.8L213.7 256z"/>
-                        </svg>
+                        Load More
                     </button>
 
-                    <button 
-                        className="page-button "
-                        onClick={nextButton}
-                        disabled={(page < 3) ? false : true}
-                        >
-                        <svg xmlns="http://www.w3.org/2000/svg" className={(page < 3 ) ? "button-icon" : "button-icon btn-disabled"} viewBox="0 0 512 512">
-                            <path d="M298.3 256 131.1 81.9c-4.2-4.3-4.1-11.4.2-15.8l29.9-30.6c4.3-4.4 11.3-4.5 15.5-.2L380.9 248c2.2 2.2 3.2 5.2 3 8.1.1 3-.9 5.9-3 8.1L176.7 476.8c-4.2 4.3-11.2 4.2-15.5-.2L131.3 446c-4.3-4.4-4.4-11.5-.2-15.8L298.3 256z"/>
-                        </svg>
-                    </button>
                 </div>
             </div>
         </div>

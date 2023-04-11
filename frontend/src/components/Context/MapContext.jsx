@@ -1,10 +1,11 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { getPlaces } from '../../api';
+import { getPlaces, getNext } from '../../api';
 import { placestest } from '../../testing/places'
 
 const MapContext = createContext();
 const MapProvider = props => {
 
+    const [apiCount, setApiCount] = useState(0);
     const [choice, setChoice] = useState([]);
     const [loading, setLoading] = useState(false);
     const [hover, setHover] = useState(null);
@@ -25,7 +26,14 @@ const MapProvider = props => {
 
     const apiIsLoaded = () => {
         setLoaded(true);
-        console.log("Maps api is loaded");
+        //console.log("Maps api is loaded");
+    }
+
+    const getNextPlaces = async () => {
+        const data = await getNext(token);
+        //const newarr = places.concat(data.results)
+        //console.log(newarr);
+        setPlaces( places => [...places, ...data.results])
     }
     
     const mouseHover = (placeid) => {
@@ -84,11 +92,10 @@ const MapProvider = props => {
     useEffect( () => {
         if( loading ) {
             const placesHandler = async () => {
-                //const data = await getPlaces(lat, lon);
-                //setPlaces(data.results);
-                setPlaces(placestest);
-                //setToken(data.next_page_token)
-                //console.log(data);
+                const data = await getPlaces(lat, lon);
+                setPlaces(data.results);
+                //setPlaces(placestest);
+                setToken(data.next_page_token)
             }
             routeHandler();
             placesHandler();
@@ -110,7 +117,7 @@ const MapProvider = props => {
             setFilter({...filter, [name]: "" });
         }
         else{
-            let value =  type.replace(/ /g,'').toLowerCase();
+            let value =  type.replace(/-|\s/g,'').toLowerCase();
             setFilter({...filter, [name]: value });
             //window.history.pushState({}, '', window.location.href + `?${name}=${value}`)
         }
@@ -126,12 +133,30 @@ const MapProvider = props => {
             const ratingtypes = {
                 highestrating: 'rating',
                 totalratings: 'user_ratings_total',
-                price: 'price_level',
-                openstatus: 'open_now',
+                pricelevel: 'price_level',
+                az: 'name',
             }
             const sortProperty = ratingtypes[type];
-            const sortedarray = [...sorted].sort( (a,b) => b[sortProperty] - a[sortProperty])
-            setSorted(sortedarray)
+
+            if(sortProperty === 'name'){
+                let sortedarray = [...sorted].sort( (a,b) =>
+                    a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1,
+                )
+                setSorted(sortedarray)
+            }
+            else if(sortProperty === 'price_level'){
+                let sortedarray = [...sorted].sort( function(a,b) {
+                    if(a.price_level === undefined) return -1;
+                    if(a.price_level > b.price_level) return 1;
+                    if(a.price_level < b.price_level) return -1;
+                })
+                setSorted(sortedarray)
+            }
+            else{
+                let sortedarray = [...sorted].sort( (a,b) => b[sortProperty] - a[sortProperty])
+                setSorted(sortedarray)
+            }
+            
         }
 
         sortPlaces(filter.rating) 
@@ -204,6 +229,8 @@ const MapProvider = props => {
             results,
             sorted,
             selected,
+            token,
+            getNextPlaces,
             removeAll,
             removeHandler,
             resultHandler,

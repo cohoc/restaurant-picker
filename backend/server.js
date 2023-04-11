@@ -33,6 +33,22 @@ app.get('/restaurants/:lat/:lon', (req, res) => {
     }
 })
 
+app.get('/restaurants/:token', (req, res) => {
+    const tokenurl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+    const tokenid = req.params.token;
+
+    try {
+        axios.get(`${tokenurl}pagetoken=${tokenid}&key=${process.env.GOOGLE_PLACES_KEY}`)
+            .then( function(response) {
+                res.status(200).json(response.data)
+            })
+    
+    }
+    catch(error){
+        res.status(400).json({message: error.message});
+    }
+})
+
 app.get('/restaurants/:placeid', (req, res) => {
     const detailurl  = 'https://maps.googleapis.com/maps/api/place/details/json?'
     const id = req.params.placeid;

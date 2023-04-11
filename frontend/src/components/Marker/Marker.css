@@ -1,5 +1,5 @@
 .marker-location{
-    position: relative;
+    position: absolute;
     width: 1.75rem;
     height: 1.75rem;
     display: block;

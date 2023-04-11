@@ -46,6 +46,7 @@ function Dropdown({items, name, placeholder, filter, handleFilter}) {
 
     return (
         <div ref={click} className="dropdown-container">
+            
             <button 
                 type="button"
                 className={(filter !== "") ? "dropdown-btn dropdown-active" : "dropdown-btn dropdown-hidden"}

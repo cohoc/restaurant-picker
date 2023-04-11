@@ -17,12 +17,11 @@ function Results() {
 
     const choiceHandler = async () => {
         setLoading(true);
-        //let index = Math.floor(Math.random() * selected.length );
-        //let choice = selected[index].placeid;
-        //const data = await getDetails(choice);
-        //setRestaurant(data.result);
-        setRestaurant(choicetest)
-        console.log("choice handler")
+        let index = Math.floor(Math.random() * selected.length );
+        let choice = selected[index].placeid;
+        const data = await getDetails(choice);
+        setRestaurant(data.result);
+        //setRestaurant(choicetest)
         //console.log(JSON.stringify(restaurant));
     }
 
@@ -30,15 +29,12 @@ function Results() {
         let date = new Date();
         let day = date.getDay();
         setDay(day);
-        console.log("date handler")
     }
 
     const resizeHandler = () => {
         let rwidth = (restaurant.rating /5) * 65;
         setRating(rwidth);
-        console.log(rwidth);
         setLoading(false);
-        console.log("resize handler")
     }
 
     const nextSlide = () => {
@@ -56,7 +52,6 @@ function Results() {
 
     useEffect(() => {
         if(results){ 
-            console.log("getting rest")
             choiceHandler();
  
         }
