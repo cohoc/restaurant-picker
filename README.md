@@ -1,5 +1,4 @@
 # Restaurant Picker
---------------------
 Application built using React, Firebase and Express that displays nearby restaurants using navigator in the browser and Google Maps APIs. Users can input their address to get a new list of restaurants. Restaurants can be filtered and sorted by distance, user ratings, price, etc. After a user has selected a series of restaurants a random one can be picked from the selection.
 
 ### Motivation
