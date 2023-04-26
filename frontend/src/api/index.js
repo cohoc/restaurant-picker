@@ -1,14 +1,14 @@
 import axios from 'axios'
 
-const url = 'http://localhost:5000/restaurants';
+const url = 'http://127.0.0.1:5001/restaurant-picker-339001/us-central1/restaurants';
 
 export const getDetails = async (placeid) => {
-    const response = await axios.get(`${url}/${placeid}`);
+    const response = await axios.get(`${url}/details/${placeid}`);
     return (response.data);
 }
 
 export const getNext = async (token) => {
-    const response = await axios.get(`${url}/${token}`)
+    const response = await axios.get(`${url}/nextpage/${token}`)
     return (response.data);
 }
 
@@ -18,6 +18,6 @@ export const getPhotos = async (photoref, maxwidth, maxheight) => {
 }
 
 export const getPlaces = async (latitude, longitude) => {  
-    const response = await axios.get(`${url}/${latitude}/${longitude}`)
+    const response = await axios.get(`${url}/places/${latitude}/${longitude}`)
     return (response.data);
 }

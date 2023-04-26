@@ -1,27 +1,23 @@
-import dotenv from 'dotenv'
-import express from 'express'
-import cors from 'cors'
-import axios from 'axios'
-
-dotenv.config()
+const functions = require("firebase-functions")
+const axios = require("axios")
+const express = require("express")
+const cors = require("cors")
+require("dotenv").config()
 
 const app = express();
-const port = 5000;
 
-//middleware
 app.use(cors());
 app.use(express.json());
 
-// custom url regex  /restaurants\/@lat=(?:([^\/]+?)),lon=(?:([^\/]+?))$/
+const placesurl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+const detailurl = 'https://maps.googleapis.com/maps/api/place/details/json?'
 
-app.get('/restaurants/:lat/:lon', (req, res) => {
-    const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+app.get('/places/:lat/:lon', (req, res) => {
     const latitude = req.params.lat;
     const longitude = req.params.lon;
     
-    
     try {
-        axios.get(`${url}type=restaurant&rankby=distance&location=${latitude},${longitude}&key=${process.env.GOOGLE_PLACES_KEY}`)
+        axios.get(`${placesurl}type=restaurant&rankby=distance&location=${latitude},${longitude}&key=${process.env.GOOGLE_PLACES_KEY}`)
             .then( function(response) {
                 res.status(200).json(response.data)
             })
@@ -33,12 +29,11 @@ app.get('/restaurants/:lat/:lon', (req, res) => {
     }
 })
 
-app.get('/restaurants/:token', (req, res) => {
-    const tokenurl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+app.get('/nextpage/:token', (req, res) => {
     const tokenid = req.params.token;
 
     try {
-        axios.get(`${tokenurl}pagetoken=${tokenid}&key=${process.env.GOOGLE_PLACES_KEY}`)
+        axios.get(`${placesurl}pagetoken=${tokenid}&key=${process.env.GOOGLE_PLACES_KEY}`)
             .then( function(response) {
                 res.status(200).json(response.data)
             })
@@ -49,8 +44,7 @@ app.get('/restaurants/:token', (req, res) => {
     }
 })
 
-app.get('/restaurants/:placeid', (req, res) => {
-    const detailurl  = 'https://maps.googleapis.com/maps/api/place/details/json?'
+app.get('/details/:placeid', (req, res) => {
     const id = req.params.placeid;
 
     try{
@@ -65,7 +59,4 @@ app.get('/restaurants/:placeid', (req, res) => {
     }
 })
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
-})
-
+exports.restaurants = functions.https.onRequest(app);
