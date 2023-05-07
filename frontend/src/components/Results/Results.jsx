@@ -84,12 +84,10 @@ function Results() {
                                                         <div 
                                                             key={index}
                                                             className="icon-container">
-                                                            <img 
-                                                                src={Dollar}
-                                                                alt="dollaricon"
-                                                                className="dollar"
-                                                                > 
-                                                            </img>
+                                                            <Icon 
+                                                                name="dollar"
+                                                                className=" dollar results-dollar"
+                                                            />
                                                         </div>
                                                     ))}
                                                 </div>
@@ -138,7 +136,7 @@ function Results() {
                                             <div className="icon-container">
                                                 <Icon
                                                     name="location"
-                                                    className="info-icon"
+                                                    className="place-info-icon"
                                                 />
                                             </div>
                                             
@@ -151,7 +149,7 @@ function Results() {
                                             <div className="icon-container">
                                                 <Icon
                                                     name="computer"
-                                                    className="info-icon"
+                                                    className="place-info-icon"
                                                 />
                                             </div>
                                             <div className="info-text">
@@ -170,7 +168,7 @@ function Results() {
                                             <div className="icon-container">
                                                 <Icon
                                                     name="phone"
-                                                    className="info-icon"
+                                                    className="place-info-icon"
                                                 />
                                             </div>
                                             <div className="info-text">

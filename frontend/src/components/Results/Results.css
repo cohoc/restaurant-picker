@@ -15,11 +15,11 @@
 }
 
 .results-container{
-    width: clamp(420px, 80%, 760px);
+    width: clamp(420px, 90%, 760px);
     height: auto;
     display: flex;
     flex-direction: column;
-    background: var(--color-theme-blue);
+    background: var(--color-results-bg);
     transition: height 300ms ease;
 }
 
@@ -85,7 +85,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    color: black;
+    color: white;
     font-size: 18px;
 }
 
@@ -119,6 +119,10 @@
     align-items: center;
     justify-content: center;
     
+}
+
+.results-dollar{
+    fill: var(--color-theme-blue);
 }
 
 .price-container{
@@ -189,7 +193,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: white;
+    background: var(--color-results-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, .25);
     color: var(--color-theme-blue);
     font-size: 1.25rem;
 }
@@ -295,6 +300,8 @@
 }
 
 .hours-container{
+    display: flex;
+    flex-direction: column;
     padding: 0px 10px;
 }
 
@@ -378,6 +385,7 @@
 
 .info-row a:hover{
     text-decoration-line: underline;
+    color: var(--color-theme-blue);
 }
 
 .info-text{
@@ -394,6 +402,7 @@
     overflow-wrap: break-word;
     white-space: pre-wrap;
     word-wrap: break-word;
+    color: white;
 }
 
 .icon-container{
@@ -402,6 +411,12 @@
     justify-content: center;
 }
 
+.place-info-icon{
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+    fill: var(--color-theme-blue);
+}
 
 .info-icon{
     width: 24px;

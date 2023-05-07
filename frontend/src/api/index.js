@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://127.0.0.1:5001/restaurant-picker-339001/us-central1/restaurants';
+const url = `${process.env.FIREBASE_FUNCTIONS_URL}`;
 
 export const getDetails = async (placeid) => {
     const response = await axios.get(`${url}/details/${placeid}`);
